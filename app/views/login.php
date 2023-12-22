@@ -36,7 +36,7 @@
                 <?php if (isset($success_message)) { ?>
                  <div class="alert alert-success"><?php echo $success_message; ?></div>
                 <?php } ?>
-              <form action="<?= site_url('validate_login'); ?> " method="post">
+              <form action="<?= site_url('dashboard'); ?> " method="post">
                 <div class="form-group">
                   <input type="email" class="form-control form-control-lg" placeholder="Email" name="email">
                 </div>

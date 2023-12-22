@@ -49,7 +49,7 @@ $router->get('/register', 'Welcome::register');
 $router->get('/login', 'Welcome::login');
 $router->get('/dashboard', 'Welcome::dashboard');
 $router->post('/validate_reg', 'Welcome::register_val');
-$router->post('/validate_login', 'Welcome::login_val');
+$router->post('/dashboard', 'Welcome::login_val');
 $router->post('/email', 'Welcome::email');
 $router->get('/verify', 'Welcome::account');
 $router->post('/check', 'Welcome::check');
