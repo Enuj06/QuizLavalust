@@ -90,10 +90,6 @@
         button:hover {
             background-color: #45a049;
         }
-
-        .btnadd{
-
-        }
     </style>
 </head>
 
@@ -121,7 +117,7 @@
             </select>
 
             <div class="answer-container" id="answerContainer">
-            </div><hr>/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/<hr>
+            </div><hr>
 
             <button type="submit" class="btn btn-primary">Save Quiz</button>
         </form>
@@ -161,6 +157,7 @@
       <td>Answer</td>
     </tr>
   </tbody>
+  <?php endforeach; ?>
 </table>
 
 
@@ -172,14 +169,12 @@
         var original = document.querySelector('form');
         var cloned = original.cloneNode(true);
 
-        // Update the name attributes to avoid conflicts
         cloned.querySelectorAll('[name]').forEach(element => {
             element.name = element.name + formCounter;
         });
 
         formCounter++;
 
-        // Remove the previous "Save Quiz" button
         const prevSaveQuizButton = document.querySelector('.btn');
         if (prevSaveQuizButton) {
             prevSaveQuizButton.parentNode.removeChild(prevSaveQuizButton);
@@ -192,14 +187,11 @@
         var answerContainer = selectElement.parentNode.querySelector('.answer-container');
         var selectedType = selectElement.value;
 
-        // Reset the answer container
         answerContainer.innerHTML = '';
 
-        // Show the answer container for the selected type
         if (selectedType !== '--Select Option--') {
             answerContainer.style.display = 'block';
 
-            // Add specific answer fields based on the selected type
             if (selectedType === 'multiplechoice') {
                 answerContainer.innerHTML = '<label for="answer">Options (comma-separated)</label>' +
                     '<input type="text" name="answer" placeholder="Option 1, Option 2, ...">';
@@ -219,7 +211,6 @@
         var glowButton = document.getElementById('glowButton');
         glowButton.classList.add('glow');
 
-        // Remove the 'glow' class after the animation duration
         setTimeout(function () {
             glowButton.classList.remove('glow');
         }, 3000);
