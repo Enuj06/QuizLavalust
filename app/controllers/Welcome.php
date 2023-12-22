@@ -184,8 +184,8 @@ class Welcome extends Controller {
 		$mail->Port = 587;  
 	
 
-	//	$from = 'junebalaibo03@gmail.com'; 
-	//	$mail->setFrom($from, 'June '); 
+		$from = 'junebalaibo03@gmail.com'; 
+		$mail->setFrom($from, 'June '); 
 		$mail->addAddress( $to);  
 		// var_dump($email);
 		$mail->isHTML(true);
