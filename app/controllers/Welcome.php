@@ -248,7 +248,10 @@ public function create_quiz_post()
         }
         // }
     }
-
+	
+	public function yourquizzes(){
+		$this->call->view('yourquizzes');
+	}
 
 }
 ?>

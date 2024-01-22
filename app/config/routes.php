@@ -58,3 +58,4 @@ $router->post('/check', 'Welcome::check');
 //admin
 $router->get('/create_quiz', 'Welcome::create_quiz_get');
 $router->post('/create_quizzes', 'Welcome::create_quiz_post');
+$router->get('/yourquizzes', 'Welcome::yourquizzes');

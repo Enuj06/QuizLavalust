@@ -101,10 +101,19 @@
 
 <div class="header">
         <h1 style="text-align: center">Create Your Own Quiz!</h1>
-        <button onclick="addForm()" class="btnadd">Add Question</button>    
+        <button onclick="addForm()" class="btnadd">Add Question</button>
+        <a href="/yourquizzes"><button class="btnadd">View Your Quizzes</button></a>
+ 
     </div>
 
     <div class="container">
+    <?php
+    // Check if the form has been submitted
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Include the JavaScript code for showing the success alert
+        echo '<script>showSuccessAlert();</script>';
+    }
+    ?>
         <form method="post" action="<?= site_url('create_quizzes');?>" id="formContainer">
         <h2>Quiz Title:</h2>    
         <textarea id="quiz_title" name="quiz_title" placeholder="Write Quiz Title" required></textarea><br>
@@ -118,7 +127,7 @@
                 <option value="multiplechoice">Multiple Choice</option>
                 <option value="identification">Identification</option>
                 <option value="checkbox">Check Box</option>
-            </select>
+            </select>   
 
             <div class="answer-container" id="answerContainer">
             </div><hr>/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/<hr>
@@ -186,6 +195,7 @@
         }
 
         document.getElementById('formContainer').appendChild(cloned);
+        showSuccessAlert();
     }
 
     function showAnswerFields(selectElement) {
@@ -213,17 +223,32 @@
         } else {
             answerContainer.style.display = 'none';
         }
+        // showSuccessAlert();   after clicking the desired type of answer
     }
 
-    setInterval(function () {
-        var glowButton = document.getElementById('glowButton');
-        glowButton.classList.add('glow');
+    // setInterval(function () {
+    //     var glowButton = document.getElementById('glowButton');
+    //     glowButton.classList.add('glow');
 
-        // Remove the 'glow' class after the animation duration
-        setTimeout(function () {
-            glowButton.classList.remove('glow');
-        }, 3000);
-    }, 6000);
+    //     // Remove the 'glow' class after the animation duration
+    //     setTimeout(function () {
+    //         glowButton.classList.remove('glow');
+    //     }, 3000);
+    // }, 6000);
+
+    function showSuccessAlert() {
+    var alertContainer = document.createElement('div');
+    alertContainer.classList.add('alert', 'alert-success', 'mt-3');
+    alertContainer.innerHTML = '<strong>Success!</strong> Form has been successfully added.';
+    
+    // Insert the alert before the form container
+    document.getElementById('formContainer').parentNode.insertBefore(alertContainer, document.getElementById('formContainer'));
+
+    // Automatically dismiss the alert after 3 seconds
+    setTimeout(function() {
+        alertContainer.remove();
+    }, 3000);
+}
 </script>
 </body>
 
