@@ -11,7 +11,6 @@
 
     <style>
         body {
-            margin: 0;
             font-family: Arial, sans-serif;
             background-image: url('../public/images/black.jpg');
             background-repeat: no-repeat;
@@ -70,8 +69,6 @@
             padding: 12px;
             border: 1px solid #ccc;
             box-sizing: border-box;
-            margin-top: 6px;
-            margin-bottom: 16px;
             resize: vertical;
         }
 
@@ -100,11 +97,13 @@
 <body>
 
 <div class="header">
-        <h1 style="text-align: center">Create Your Own Quiz!</h1>
-        <button onclick="addForm()" class="btnadd">Add Question</button>
-        <a href="/yourquizzes"><button class="btnadd">View Your Quizzes</button></a>
- 
+    <div style="float: right; margin-top: 10px;">
+        <button onclick="confirmLogout()" class="btn btn-danger" style="margin-left: auto">Logout</button>
     </div>
+    <h1>Create Your Own Quiz!</h1>
+    <button onclick="addForm()" class="btnadd">Add Question</button>
+    <a href="/yourquizzes"><button class="btnadd">View Your Quizzes</button></a>
+</div>
 
     <div class="container">
     <?php
@@ -116,9 +115,9 @@
     ?>
         <form method="post" action="<?= site_url('create_quizzes');?>" id="formContainer">
         <h2>Quiz Title:</h2>    
-        <textarea id="quiz_title" name="quiz_title" placeholder="Write Quiz Title" required></textarea><br>
+        <textarea id="quiz_title" name="quiz_title" placeholder="Write Quiz Title" required></textarea>
         <h2>Note:<p class="subcomment">(Optional)</p></h2>
-        <textarea id="note" name="note" placeholder="Write your note.."></textarea><br>
+        <textarea id="note" name="note" placeholder="Write your note.."></textarea>
             <label for="question">Question</label>
             <input type="text" name="question" class="question" placeholder="Enter question..." required>
             <label for="selecttype">Answer Type</label>
@@ -136,45 +135,24 @@
         </form>
     </div>
 
-    <table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Question Title</th>
-      <th scope="col">Note</th>
-      <th scope="col">Question</th>
-      <th scope="col">Answer</th>
-    </tr>
-  </thead>
-  
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>Crong</td>
-      <td>Baby</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-      <td>calories</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-      <td>Answer</td>
-    </tr>
-  </tbody>
-</table>
 
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script>
+ 
+ function confirmLogout() {
+        var isConfirmed = confirm("Are you sure you want to logout?");
+        if (isConfirmed) {
+            logout();
+        }
+    }
 
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script>
+function logout() {
+        // Implement your logout logic here
+        // For example, redirect the user to the logout page
+        window.location.href = "/login";
+    }
+
     let formCounter = 1;
 
     function addForm() {

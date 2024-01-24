@@ -253,5 +253,29 @@ public function create_quiz_post()
 		$this->call->view('yourquizzes');
 	}
 
+
+	public function displayRow($id) {
+        // Load the Quiz_model
+        $this->call->model('Quiz_model');
+
+        // Get the row based on the provided ID
+        $row = $this->Quiz_model->getRowById($id);
+
+        // Pass the data to the view
+        $data['row'] = $row;
+
+        // Load the view
+        $this->loacalld->view('yourquizzes', $data);
+    }
+
+	public function displayAllRows() {
+        $data = $this->Quiz_model->getAllRows();
+        $this->call->view('yourquizzes', $data);
+    }
+
+        public function delete($id){
+			if($this->Quiz_model->delete($id))
+			redirect('/yourquizzes');
+		}
 }
 ?>

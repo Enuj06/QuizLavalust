@@ -28,5 +28,15 @@ class Quiz_model extends Model {
 
         return $inserted;
     }
+
+    public function getRowById($id) {
+        $query = $this->db->get_where('user', array('id' => $id));
+        return $query->row_array();
+    }
+
+    public function getAllRows() {
+        return $this->db->table('quiz_table')->get_all();
+
+    }
 }
 ?>

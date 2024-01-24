@@ -47,7 +47,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 $router->get('/', 'Welcome::index');
 $router->get('/register', 'Welcome::register');
 $router->get('/login', 'Welcome::login');
-$router->get('/dashboard', 'Welcome::dashboard');
+$router->get('/dashboards', 'Welcome::dashboard');
 $router->post('/validate_reg', 'Welcome::register_val');
 $router->post('/dashboard', 'Welcome::login_val');
 $router->post('/email', 'Welcome::email');
@@ -58,4 +58,5 @@ $router->post('/check', 'Welcome::check');
 //admin
 $router->get('/create_quiz', 'Welcome::create_quiz_get');
 $router->post('/create_quizzes', 'Welcome::create_quiz_post');
-$router->get('/yourquizzes', 'Welcome::yourquizzes');
+$router->get('/yours/(:num)', 'Welcome::displayRow/$id');
+$router->get('/yourquizzes', 'Welcome::displayAllRows');
