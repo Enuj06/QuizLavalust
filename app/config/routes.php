@@ -60,3 +60,4 @@ $router->get('/create_quiz', 'Welcome::create_quiz_get');
 $router->post('/create_quizzes', 'Welcome::create_quiz_post');
 $router->get('/yours/(:num)', 'Welcome::displayRow/$id');
 $router->get('/yourquizzes', 'Welcome::displayAllRows');
+$router->get('/edit/(:num)', 'Welcome::edit/$1');

@@ -277,5 +277,10 @@ public function create_quiz_post()
 			if($this->Quiz_model->delete($id))
 			redirect('/yourquizzes');
 		}
+
+		public function edit($id){
+			$data = $this->user->student_data($id);
+			$this->call->view('edit', $data);
+		}
 }
 ?>

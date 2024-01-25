@@ -46,11 +46,11 @@
                                 <td><?= $info['quiz_type']; ?></td>
                                 <td><?= $info['quiz_answer']; ?></td>
                                 <td>
-            <a class="btn btn-primary me-2" @click="openModal(faq.id)" data-bs-toggle="modal" data-bs-target="#editModal"
+            <a class="btn btn-primary me-2" href="" data-bs-toggle="modal" data-bs-target="#editModal"
               data-bs-placement="top" title="Edit">
               <i class="fas fa-edit"></i>
             </a>
-            <a class="btn btn-danger ms-2" @click="staffDelete(faq.id)" data-bs-toggle="tooltip" data-bs-placement="top"
+            <a class="btn btn-danger ms-2" href="<?= site_url('edit/' . $info['id']) ?>" data-bs-toggle="tooltip" data-bs-placement="top"
               title="Delete">
               <i class="fas fa-trash-alt"></i>
             </a>
