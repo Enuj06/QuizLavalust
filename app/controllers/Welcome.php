@@ -278,9 +278,22 @@ public function create_quiz_post()
 			redirect('/yourquizzes');
 		}
 
-		public function edit($id){
-			$data = $this->user->student_data($id);
-			$this->call->view('edit', $data);
-		}
+	public function update($id)
+    {
+        $data = $this->User_model->read($id);
+        $this->call->view('operations/update', $data);
+    }
+    public function edit($id)
+    {
+        $quiz_title = $this->io->post('quiz_title');
+        $quiz_note = $this->io->post('quiz_note');
+        $quiz_question = $this->io->post('quiz_question');
+        $quiz_type = $this->io->post('quiz_type');
+        $quiz_answer = $this->io->post('quiz_answer');
+        $result = $this->User_model->update($quiz_title, $quiz_note, $quiz_question, $quiz_type, $quiz_answer);
+        
+        if($result)
+        redirect('/yourquizzes');
+    }
 }
 ?>

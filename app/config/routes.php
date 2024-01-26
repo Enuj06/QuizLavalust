@@ -60,4 +60,10 @@ $router->get('/create_quiz', 'Welcome::create_quiz_get');
 $router->post('/create_quizzes', 'Welcome::create_quiz_post');
 $router->get('/yours/(:num)', 'Welcome::displayRow/$id');
 $router->get('/yourquizzes', 'Welcome::displayAllRows');
-$router->get('/edit/(:num)', 'Welcome::edit/$1');
+//$router->get('/edit/(:num)', 'Welcome::edit/$1');
+$router->get('/yourquizzes/delete/(:num)', 'Welcome::delete');    //delete
+
+//$router->get('/home/update/(:num)', 'User_controller::update');    //update
+//$router->match('/home/edit/(:num)', 'User_controller::edit', 'GET|POST');       //sasalo
+$router->get('home/edit/(:num)', 'Welcome::edit');
+$router->match('home/update/(:num)', 'Welcome::update', 'GET|POST');

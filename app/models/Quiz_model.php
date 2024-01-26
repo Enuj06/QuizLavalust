@@ -38,5 +38,11 @@ class Quiz_model extends Model {
         return $this->db->table('quiz_table')->get_all();
 
     }
+
+    public function delete($id){
+        $result = $this->db->table('quiz_table')->where(array('id' => $id))->delete();
+        if($result)
+            return true;
+    }
 }
 ?>

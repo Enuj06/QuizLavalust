@@ -31,14 +31,22 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Quiz Title</th>
-                                <th>Action</th>
+                                <th>Quiz Note</th>
+                                <th>Quiz Question</th>
+                                <th>Quiz Type</th>
+                                <th>Quiz Answer</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody class="bg-light text-white">
                         <?php foreach ($data as $info) : ?>
                             <tr>
                                 <td><?= $info['id']; ?></td>
-                                <td><a href=""><?= $info['quiz_title']; ?></a></td>
+                                <td><?= $info['quiz_title']; ?></td>
+                                <td><?= $info['quiz_note']; ?></td>
+                                <td><?= $info['quiz_question']; ?></td>
+                                <td><?= $info['quiz_type']; ?></td>
+                                <td><?= $info['quiz_answer']; ?></td>
                                 <td>
             <a class="btn btn-primary me-2" href="" data-bs-toggle="modal" data-bs-target="#editModal"
               data-bs-placement="top" title="Edit">
