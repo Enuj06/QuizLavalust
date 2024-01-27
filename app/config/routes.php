@@ -59,9 +59,13 @@ $router->post('/check', 'Welcome::check');
 $router->get('/create_quiz', 'Welcome::create_quiz_get');
 $router->post('/create_quizzes', 'Welcome::create_quiz_post');
 $router->get('/yours/(:num)', 'Welcome::displayRow/$id');
-$router->get('/yourquizzes', 'Welcome::displayAllRows');
+$router->get('/yourquizzes', 'Welcome::displayDifTitle');
+//$router->get('/eachquiz', 'Welcome::displayAllEach');
+$router->get('/eachquiz', 'Welcome::readAll');
 //$router->get('/edit/(:num)', 'Welcome::edit/$1');
-$router->get('/yourquizzes/delete/(:num)', 'Welcome::delete');    //delete
+$router->get('/yourquizzes/delete/(:num)', 'Welcome::deleteyour');    //delete
+$router->get('/eachquiz/delete/(:num)', 'Welcome::deleteeach');    //eachquiz
+$router->get('/eachquiz', 'Welcome::eachquiz');
 
 //$router->get('/home/update/(:num)', 'User_controller::update');    //update
 //$router->match('/home/edit/(:num)', 'User_controller::edit', 'GET|POST');       //sasalo

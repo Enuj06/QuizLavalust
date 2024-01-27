@@ -28,8 +28,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
-				<div class="box">
-					<h2 class="mb-4 text-center">Email Verification</h2>
+				<div class="box" style="background-color: #0D6EFD;">>
+					<h2 class="mb-4 text-center" style="color: white;">Email Verification</h2>
 					<?php $LAVA =& lava_instance(); ?>
 					<?php echo $LAVA->form_validation->errors(); ?>    
 					<?php if (isset($success_message)) { ?>
@@ -40,7 +40,7 @@
 					<?php } ?>
 					<form action="<?= site_url('check'); ?>" method="post" >
 						<div class="form-group">
-							<label for="to">Verification code</label>
+							<label for="to" style="color: white;">Verification code</label>
 							<input type="text" class="form-control" id="to" name="verify" placeholder="Enter verification code" required>
 							<input type="hidden" name="email" value="<?= $email ?>">
 						</div>

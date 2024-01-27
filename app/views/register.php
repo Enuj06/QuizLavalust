@@ -25,31 +25,31 @@
 </head>
 
 <body>
-  <div class="container-scroller">
+  <div class="container-scroller" style="color: white;">
     <div class="container-fluid page-body-wrapper full-page-wrapper">
       <div class="content-wrapper d-flex align-items-center auth px-0">
         <div class="row w-100 mx-0">
           <div class="col-lg-4 mx-auto">
-            <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-              <h4 class="text-center">Register here</h4>
+            <div class="auth-form-light text-left py-5 px-4 px-sm-5" style="background-color: #0D6EFD;">
+              <h4 class="text-center"><b>Register here</b></h4>
               <h6 class="font-weight-light text-center">Please Sign up</h6>            
               <?php $LAVA =& lava_instance(); ?>
               <?php echo $LAVA->form_validation->errors(); ?>         
              <form action="<?= site_url('validate_reg'); ?> " method="post">
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" name="name" placeholder="Username" value="" size="50">
+                  <input type="text" class="form-control form-control-lg" name="name" placeholder="Username" value="" size="50"style="color: white;">
                 </div>
                 <div class="form-group">
-                    <input type="email" class="form-control form-control-lg" name="email" placeholder="Email" value="" size="50">
+                    <input type="email" class="form-control form-control-lg" name="email" placeholder="Email" value="" size="50" style="color: white;">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control form-control-lg" name="password" placeholder="Password" value="" size="50" >
+                    <input type="password" class="form-control form-control-lg" name="password" placeholder="Password" value="" size="50" style="color: white;">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control form-control-lg" name="confpassword" placeholder="Confirm Password" value="" size="50">
+                    <input type="password" class="form-control form-control-lg" name="confpassword" placeholder="Confirm Password" value="" size="50" style="color: white;">
                 </div>
                 <div class="mt-3 d-flex justify-content-center">
-                <div><input type="submit" value="Sign Up" class="btn btn-primary" /></div>
+                <div><input type="submit" value="Sign Up" class="btn btn-success" /></div>
                 </div>
                 <div class="text-center mt-4 font-weight-light">
                   Already have an account? <a href="login" class="text-primary">Login</a>

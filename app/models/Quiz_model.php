@@ -34,15 +34,24 @@ class Quiz_model extends Model {
         return $query->row_array();
     }
 
-    public function getAllRows() {
+    // public function getAllRows() {
+    //     return $this->db->table('quiz_table')->get_all();
+    // }
+    public function read(){
         return $this->db->table('quiz_table')->get_all();
-
+    }
+    public function getDiffRows(){
+        return $this->db->table('quiz_table')->get_all();
     }
 
     public function delete($id){
         $result = $this->db->table('quiz_table')->where(array('id' => $id))->delete();
         if($result)
             return true;
+    }
+
+    public function title(){
+        $this->db->table('quiz_table')->select('quiz_title')->get_all();
     }
 }
 ?>

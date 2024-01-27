@@ -268,14 +268,22 @@ public function create_quiz_post()
         $this->loacalld->view('yourquizzes', $data);
     }
 
-	public function displayAllRows() {
-        $data = $this->Quiz_model->getAllRows();
+	public function displayDifTitle() {
+        $data = $this->Quiz_model->getDiffRows();
         $this->call->view('yourquizzes', $data);
     }
-
-        public function delete($id){
+	public function readAll(){
+        $data = $this->Quiz_model->read();
+        $this->call->view('eachquiz', $data);
+    }
+        public function deleteyour($id){
 			if($this->Quiz_model->delete($id))
 			redirect('/yourquizzes');
+		}
+	
+		public function deleteeach($id){
+			if($this->Quiz_model->delete($id))
+			redirect('/eachquiz');
 		}
 
 	public function update($id)
@@ -295,5 +303,7 @@ public function create_quiz_post()
         if($result)
         redirect('/yourquizzes');
     }
+
+	
 }
 ?>

@@ -20,31 +20,31 @@
 </head>
 
 <body>
-  <div class="container-scroller">
+  <div class="container-scroller" style="color: white;">
     <div class="container-fluid page-body-wrapper full-page-wrapper">
       <div class="content-wrapper d-flex align-items-center auth px-0">
         <div class="row w-100 mx-0">
           <div class="col-lg-4 mx-auto">
-            <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-              <h4 class="text-center">Login Here</h4>
+            <div class="auth-form-light text-left py-5 px-4 px-sm-5" style="background-color: #0D6EFD;">
+              <h4 class="text-center"><b>Login Here</b></h4>
               <h6 class="font-weight-light text-center">Please sign in to continue.</h6>
               <?php $LAVA =& lava_instance(); ?>
               <?php echo $LAVA->form_validation->errors(); ?>    
               <?php if (isset($error_message)) { ?>
-                 <div class="alert alert-danger"><?php echo $error_message; ?></div>
+                 <div class="alert alert-danger" style="background-color: #dc3545; border-color: #c82333; color: #ffffff;"><?php echo $error_message; ?></div>
                 <?php } ?>
                 <?php if (isset($success_message)) { ?>
-                 <div class="alert alert-success"><?php echo $success_message; ?></div>
+                 <div class="alert alert-success" style="background-color: #28a745; border-color: #218838; color: #ffffff;"><?php echo $success_message; ?></div>
                 <?php } ?>
               <form action="<?= site_url('dashboard'); ?> " method="post">
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-lg" placeholder="Email" name="email">
+                  <input type="email" class="form-control form-control-lg" placeholder="Email" name="email" style="color:white;">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" placeholder="Password" name="password" >
+                  <input type="password" class="form-control form-control-lg" placeholder="Password" name="password" style="color:white;">
                 </div>
                 <div class="mt-3 d-flex justify-content-center">
-                <div><input type="submit" value="Login" class="btn btn-primary" /></div>
+                <div><input type="submit" value="Login" class="btn btn-success" /></div>
                 </div>
                 <div class="text-center mt-4 font-weight-light">
                   Don't have an account? <a href="register" class="text-primary">Create</a>

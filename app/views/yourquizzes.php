@@ -23,13 +23,13 @@
             </div>
 
                 <div class="card-header bg-primary text-warning">
-                    <h3 style="text-align: center">Quiz Information</h3>
+                    <h3 style="text-align: center">Quiz List</h3>
                 </div>
                 <div class="card-body bg-secondary">
                     <table class="table table-dark table-hover table-bordered text-center">
                         <thead class="bg-info text-white text-center">
                             <tr>
-                                <th>ID</th>
+                                <th>No.</th>
                                 <th>Quiz Title</th>
                                 <th>Action</th>
                             </tr>
@@ -38,9 +38,9 @@
                         <?php foreach ($data as $info) : ?>
                             <tr>
                                 <td><?= $info['id']; ?></td>
-                                <td><a href=""><?= $info['quiz_title']; ?></a></td>
+                                <td><?= $info['quiz_title']; ?></td>
                                 <td>
-            <a class="btn btn-primary me-2" href="" data-bs-toggle="modal" data-bs-target="#editModal"
+            <a class="btn btn-primary me-2" onclick="eachquiz()" data-bs-toggle="modal" data-bs-target="#editModal"
               data-bs-placement="top" title="Edit">
               <i class="fas fa-edit"></i>
             </a>
@@ -68,7 +68,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          Are you sure you want to delete this FAQ?
+          Are you sure you want to delete this Quiz?
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -114,6 +114,11 @@
 
     function back() {
         window.location.href = "/create_quiz";
+    }
+
+    function eachquiz(){
+        window.location.href = "/eachquiz";
+
     }
 
     

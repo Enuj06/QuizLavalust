@@ -46,7 +46,7 @@
         }
 
         .header {
-            background-color: brown;
+            background-color: #0D6EFD;
             padding: 20px;
             text-align: center;
             position: sticky;
@@ -113,6 +113,7 @@
         echo '<script>showSuccessAlert();</script>';
     }
     ?>
+    
         <form method="post" action="<?= site_url('create_quizzes');?>" id="formContainer">
         <h2>Quiz Title:</h2>    
         <textarea id="quiz_title" name="quiz_title" placeholder="Write Quiz Title" required></textarea>
