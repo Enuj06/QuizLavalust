@@ -288,23 +288,23 @@ public function create_quiz_post()
 			redirect('/eachquiz');
 		}
 
-	public function update($id)
-    {
-        $data = $this->User_model->read($id);
-        $this->call->view('operations/update', $data);
-    }
-    public function edit($id)
-    {
-        $quiz_title = $this->io->post('quiz_title');
-        $quiz_note = $this->io->post('quiz_note');
-        $quiz_question = $this->io->post('quiz_question');
-        $quiz_type = $this->io->post('quiz_type');
-        $quiz_answer = $this->io->post('quiz_answer');
-        $result = $this->User_model->update($quiz_title, $quiz_note, $quiz_question, $quiz_type, $quiz_answer);
-        
-        if($result)
-        redirect('/yourquizzes');
-    }
+		public function edit($id)
+		{
+			$data = $this->Quiz_model->quiz_data($id);
+			$this->call->view('eachquiz', $data);
+		}
+		public function update()
+		{
+			$id = $this->io->post('id');
+			$quiz_title = $this->io->post('quiz_title');
+			$quiz_note = $this->io->post('quiz_note');
+			$quiz_question = $this->io->post('quiz_question');
+			$quiz_type = $this->io->post('quiz_type');
+			$quiz_answer = $this->io->post('quiz_answer');
+			$correct_answer = $this->io->post('correct_answer');
+			$this->Quiz_model->edit($id, $quiz_title, $quiz_note, $quiz_question, $quiz_type, $quiz_answer, $correct_answer);
+			redirect('/eachquiz');
+		}
 
 	
 }

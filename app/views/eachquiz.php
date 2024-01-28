@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container-lg">
     <div class="info">
         <div class="col-md-12 mt-4">
             <div class="card">
@@ -35,7 +35,7 @@
                             <th>Quiz Note</th>
                             <th>Quiz Question</th>
                             <th>Quiz Type</th>
-                            <th>Quiz Answer</th>
+                            <th>Quiz Answer Options</th>
                             <th>Correct Answer</th>
                             <th>Actions</th>
                         </tr>
@@ -52,7 +52,7 @@
                                 <td><?= $info['correct_answer']; ?></td>
                                 <td>
                                     <a class="btn btn-primary me-2" href="" data-bs-toggle="modal" data-bs-target="#editModal"
-                                    data-bs-placement="top" title="Edit">
+                                    data-bs-placement="top" title="Edit" onclick="populateEditModal(<?= $info['id']; ?>, '<?= $info['quiz_note']; ?>', '<?= $info['quiz_question']; ?>', '<?= $info['quiz_type']; ?>', '<?= $info['quiz_answer']; ?>', '<?= $info['correct_answer']; ?>')">
                                         <i class="fas fa-edit"></i>
                                     </a>
                                     <a class="btn btn-danger ms-2" data-bs-target="#deleteModal" data-bs-toggle="modal" data-bs-placement="top"
@@ -102,24 +102,29 @@
                 <!-- Form to edit the quiz details -->
                 <form id="editForm">
                     <div class="mb-3">
-                        <label for="editQuizNote" class="form-label">Quiz Title</label>
-                        <input type="text" class="form-control" id="editQuizNote" placeholder="Enter Quiz Title" required>
-                    </div>
-                    <div class="mb-3">
                         <label for="editQuizNote" class="form-label">Quiz Note</label>
-                        <input type="text" class="form-control" id="editQuizNote" placeholder="Enter Quiz Note" required>
+                        <input type="text" class="form-control" id="editQuizNote"  required>
                     </div>
                     <div class="mb-3">
                         <label for="editQuizQuestion" class="form-label">Quiz Question</label>
-                        <input type="text" class="form-control" id="editQuizQuestion" placeholder="Enter Quiz Question" required>
+                        <input type="text" class="form-control" id="editQuizQuestion"  required>
                     </div>
                     <div class="mb-3">
                         <label for="editQuizType" class="form-label">Quiz Type</label>
-                        <input type="text" class="form-control" id="editQuizType" placeholder="Enter Quiz Type" required>
+                        <select name="editQuizType" class="form-control" id="editQuizType" required>
+                            <option>--Select Option--</option>
+                            <option value="multiplechoice">multiplechoice</option>
+                            <option value="identification">identification</option>
+                            <option value="checkbox">checkbox</option>
+                        </select>
                     </div>
                     <div class="mb-3">
-                        <label for="editQuizAnswer" class="form-label">Quiz Answer</label>
-                        <input type="text" class="form-control" id="editQuizAnswer" placeholder="Enter Quiz Answer" required>
+                        <label for="editQuizAnswer" class="form-label">Quiz Answer Options</label>
+                        <input type="text" class="form-control" id="editQuizAnswer"  required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editQuizAnswer" class="form-label">Correct Answer</label>
+                        <input type="text" class="form-control" id="editquizCorrectAnswer"  required>
                     </div>
                 </form>
             </div>
@@ -142,10 +147,10 @@
         var deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'), {});
     });
     
-    function deleteQuiz(quizId) {
+    function deleteQuiz(id) {
         // You can use AJAX or redirect to perform the deletion logic
         // For simplicity, let's assume a redirect
-        window.location.href = "<?= site_url('/eachquiz/delete/') ?>" + quizId;
+        window.location.href = "<?= site_url('/eachquiz/delete/') ?>" + id;
     }
     function back() {
         console.log("Back button clicked");
@@ -168,14 +173,15 @@
         window.location.href = "/yourquizzes";
     }
 
-    function populateEditModal(quizId, quizNote, quizQuestion, quizType, quizAnswer) {
+    function populateEditModal(id, quizNote, quizQuestion, quizType, quizAnswer, quizCorrectAnswer) {
         $('#editQuizNote').val(quizNote);
         $('#editQuizQuestion').val(quizQuestion);
         $('#editQuizType').val(quizType);
         $('#editQuizAnswer').val(quizAnswer);
+        $('#editquizCorrectAnswer').val(quizCorrectAnswer);
 
         // Assuming you have a hidden input to store the quiz ID
-        $('#editForm').append('<input type="hidden" name="editQuizId" value="' + quizId + '">');
+        $('#editForm').append('<input type="hidden" name="editid" value="' + id + '">');
     }
 
     $(document).ready(function () {
@@ -184,13 +190,14 @@
         // This is just an example. You should trigger this function when the edit button is clicked.
         $('#editButton').on('click', function () {
             // Assuming you have access to the quiz data in your JavaScript
-            var quizId = 1; // Replace with the actual quiz ID
+            var id = 1; // Replace with the actual quiz ID
             var quizNote = "Sample Quiz Note"; // Replace with the actual quiz note
             var quizQuestion = "Sample Quiz Question"; // Replace with the actual quiz question
             var quizType = "Sample Quiz Type"; // Replace with the actual quiz type
             var quizAnswer = "Sample Quiz Answer"; // Replace with the actual quiz answer
+            var quizCorrectAnswer = "Sample Correct Answer"; // Replace with the actual quiz answer
 
-            populateEditModal(quizId, quizNote, quizQuestion, quizType, quizAnswer);
+            populateEditModal(id, quizNote, quizQuestion, quizType, quizAnswer, quizCorrectAnswer);
 
             editModal.show();
         });
