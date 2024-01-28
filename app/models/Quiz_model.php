@@ -9,7 +9,7 @@ class Quiz_model extends Model {
         $this->call->database();
     }
 
-    public function create_quiz($quiz_title, $quiz_note, $quiz_question, $quiz_type, $quiz_answer)
+    public function create_quiz($quiz_title, $quiz_note, $quiz_question, $quiz_type, $quiz_answer, $correct_answer)
     {
         $quizData = array(
             'quiz_title' => $quiz_title,
@@ -17,6 +17,7 @@ class Quiz_model extends Model {
             'quiz_question' => $quiz_question,
             'quiz_type' => $quiz_type,
             'quiz_answer' => $quiz_answer,
+            'correct_answer' => $correct_answer,
         );
 
         $inserted = $this->db->table('quiz_table')->insert($quizData);
@@ -37,9 +38,13 @@ class Quiz_model extends Model {
     // public function getAllRows() {
     //     return $this->db->table('quiz_table')->get_all();
     // }
-    public function read(){
+    public function read($quizTitle = null){
+    if ($quizTitle !== null) {
+        return $this->db->table('quiz_table')->where('quiz_title', $quizTitle)->get_all();
+    } else {
         return $this->db->table('quiz_table')->get_all();
     }
+}
     public function getDiffRows(){
         return $this->db->table('quiz_table')->get_all();
     }

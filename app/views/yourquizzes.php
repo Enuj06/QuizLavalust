@@ -50,7 +50,7 @@
             </a>
           </td>
                             </tr>
-                            
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
@@ -124,7 +124,7 @@
     
     
 </script>
-<?php endforeach; ?>
+
 
 </body>
 </html>

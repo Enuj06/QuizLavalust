@@ -240,9 +240,10 @@ public function create_quiz_post()
             $question = isset($_POST['question']) ? $_POST['question'] : '';
             $selecttype = isset($_POST['selecttype']) ? $_POST['selecttype'] : '';
             $answer = isset($_POST['answer']) ? $_POST['answer'] : '';
+            $correct_answer = isset($_POST['correct_answer']) ? $_POST['correct_answer'] : '';
         
             $this->call->model('Quiz_model');  
-            $this->Quiz_model->create_quiz($quiz_title, $note, $question, $selecttype, $answer);
+            $this->Quiz_model->create_quiz($quiz_title, $note, $question, $selecttype, $answer, $correct_answer);
           
             return redirect('create_quiz');
         }
@@ -272,10 +273,11 @@ public function create_quiz_post()
         $data = $this->Quiz_model->getDiffRows();
         $this->call->view('yourquizzes', $data);
     }
-	public function readAll(){
-        $data = $this->Quiz_model->read();
-        $this->call->view('eachquiz', $data);
-    }
+	public function readAll($quiz_title = null){
+		$data = $this->Quiz_model->read($quiz_title);
+		$this->call->view('eachquiz', $data);
+	}
+	
         public function deleteyour($id){
 			if($this->Quiz_model->delete($id))
 			redirect('/yourquizzes');

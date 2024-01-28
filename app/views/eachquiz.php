@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Quizzes info</title>
+    <title>Each quiz</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -32,11 +32,11 @@
                     <thead class="bg-info text-white text-center">
                         <tr>
                             <th>No.</th>
-                            <th>Quiz Title</th>
                             <th>Quiz Note</th>
                             <th>Quiz Question</th>
                             <th>Quiz Type</th>
                             <th>Quiz Answer</th>
+                            <th>Correct Answer</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -45,11 +45,11 @@
                         <?php foreach ($data as $info) : ?>
                             <tr>
                                 <td><?= $info['id']; ?></td>
-                                <td><?= $info['quiz_title']; ?></td>
                                 <td><?= $info['quiz_note']; ?></td>
                                 <td><?= $info['quiz_question']; ?></td>
                                 <td><?= $info['quiz_type']; ?></td>
                                 <td><?= $info['quiz_answer']; ?></td>
+                                <td><?= $info['correct_answer']; ?></td>
                                 <td>
                                     <a class="btn btn-primary me-2" href="" data-bs-toggle="modal" data-bs-target="#editModal"
                                     data-bs-placement="top" title="Edit">

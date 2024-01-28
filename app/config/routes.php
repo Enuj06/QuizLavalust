@@ -65,7 +65,7 @@ $router->get('/eachquiz', 'Welcome::readAll');
 //$router->get('/edit/(:num)', 'Welcome::edit/$1');
 $router->get('/yourquizzes/delete/(:num)', 'Welcome::deleteyour');    //delete
 $router->get('/eachquiz/delete/(:num)', 'Welcome::deleteeach');    //eachquiz
-$router->get('/eachquiz', 'Welcome::eachquiz');
+//$router->get('/eachquiz', 'Welcome::eachquiz');
 
 //$router->get('/home/update/(:num)', 'User_controller::update');    //update
 //$router->match('/home/edit/(:num)', 'User_controller::edit', 'GET|POST');       //sasalo

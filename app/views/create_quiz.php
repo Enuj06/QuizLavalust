@@ -127,7 +127,9 @@
                 <option value="multiplechoice">Multiple Choice</option>
                 <option value="identification">Identification</option>
                 <option value="checkbox">Check Box</option>
-            </select>   
+            </select>
+            <label for="correct_answer">Correct Answer</label>
+            <input type="text" name="correct_answer" placeholder="Enter the correct answer" required>  
 
             <div class="answer-container" id="answerContainer">
             </div><hr>/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/<hr>
@@ -191,10 +193,10 @@ function logout() {
             if (selectedType === 'multiplechoice') {
                 answerContainer.innerHTML = '<label for="answer">Options (comma-separated)</label>' +
                     '<input type="text" name="answer" placeholder="Option 1, Option 2, ...">';
-            } else if (selectedType === 'identification') {
-                answerContainer.innerHTML = '<label for="answer">Correct Answer</label>' +
-                    '<input type="text" name="answer" placeholder="Correct Answer">';
-            } else if (selectedType === 'checkbox') {
+             } // else if (selectedType === 'identification') {
+            //     answerContainer.innerHTML = '<label for="answer">Correct Answer</label>' +
+            //         '<input type="text" name="answer" placeholder="Correct Answer">';}
+             else if (selectedType === 'checkbox') {
                 answerContainer.innerHTML = '<label for="answer">Options (comma-separated)</label>' +
                     '<input type="text" name="answer" placeholder="Option 1, Option 2, ...">';
             }
