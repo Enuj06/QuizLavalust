@@ -19,7 +19,7 @@
             <div class="card">
             <div style="float: right; margin-top: 10px;">
                 <button onclick="back()" class="btn btn-primary" style="margin-left: auto; margin-bottom: 10px;">← Back to list</button>
-                <button onclick="confirmLogout()" class="btn btn-danger" style="margin-left: 78%; margin-bottom: 10px;">Log Out→</button>
+                <button onclick="confirmLogout()" class="btn btn-danger" style="margin-left: 65em; margin-bottom: 10px;">Log Out→</button>
             </div>
 
             <!-- Display the table header outside of the loop -->
@@ -51,7 +51,7 @@
                                 <td><?= $info['quiz_answer']; ?></td>
                                 <td><?= $info['correct_answer']; ?></td>
                                 <td>
-                                    <a class="btn btn-primary me-2" href="" data-bs-toggle="modal" data-bs-target="#editModal"
+                                    <a class="btn btn-primary me-2" href="<?= isset($info['id']) ? '/eachquiz/edit/' . $info['id'] : '#'; ?>"  data-bs-toggle="modal" data-bs-target="#editModal"
                                     data-bs-placement="top" title="Edit" onclick="populateEditModal(<?= $info['id']; ?>, '<?= $info['quiz_note']; ?>', '<?= $info['quiz_question']; ?>', '<?= $info['quiz_type']; ?>', '<?= $info['quiz_answer']; ?>', '<?= $info['correct_answer']; ?>')">
                                         <i class="fas fa-edit"></i>
                                     </a>
@@ -100,7 +100,7 @@
             </div>
             <div class="modal-body">
                 <!-- Form to edit the quiz details -->
-                <form id="editForm">
+                <form id="editForm" method="post" action="/eachquiz/update/<?= $info['id']; ?>">
                     <div class="mb-3">
                         <label for="editQuizNote" class="form-label">Quiz Note</label>
                         <input type="text" class="form-control" id="editQuizNote"  required>
@@ -111,20 +111,23 @@
                     </div>
                     <div class="mb-3">
                         <label for="editQuizType" class="form-label">Quiz Type</label>
-                        <select name="editQuizType" class="form-control" id="editQuizType" required>
+                        <select name="editQuizType" class="form-control" id="editQuizType" required onchange="toggleAnswerOptions()">
                             <option>--Select Option--</option>
                             <option value="multiplechoice">multiplechoice</option>
-                            <option value="identification">identification</option>
+                            <option value="identification">identification</option>  
                             <option value="checkbox">checkbox</option>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="editQuizAnswer" class="form-label">Quiz Answer Options</label>
-                        <input type="text" class="form-control" id="editQuizAnswer"  required>
+                        <?php
+                            $disabled = ($data[0]['quiz_type'] === 'identification') ? 'disabled' : '';
+                        ?>
+                        <input type="text" class="form-control" id="editQuizAnswer" required <?= $disabled; ?>>
                     </div>
                     <div class="mb-3">
-                        <label for="editQuizAnswer" class="form-label">Correct Answer</label>
-                        <input type="text" class="form-control" id="editquizCorrectAnswer"  required>
+                        <label for="editCorrectAnswer" class="form-label">Correct Answer</label>
+                        <input type="text" class="form-control" id="editquizCorrectAnswer" required>
                     </div>
                 </form>
             </div>
@@ -143,6 +146,21 @@
 
 
 <script>
+     document.addEventListener('DOMContentLoaded', function () {
+        toggleAnswerOptions(); // Initial call to set the initial state
+
+        // Function to toggle the answer options based on the selected quiz type
+        function toggleAnswerOptions() {
+            var quizType = document.getElementById('editQuizType').value;
+            var answerOptionsInput = document.getElementById('editQuizAnswer');
+
+            // Disable the input if the Quiz Type is "Identification," otherwise enable it
+            answerOptionsInput.disabled = (quizType === 'identification');
+        }
+
+        // Attach the function to the onchange event of the quiz type select
+        document.getElementById('editQuizType').addEventListener('change', toggleAnswerOptions);
+    });
     $(document).ready(function () {
         var deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'), {});
     });
@@ -204,11 +222,18 @@
     });
 
     function updateQuiz() {
-        // Implement the logic to update the quiz using AJAX or other methods
-        // For simplicity, let's assume a form submission
-        $('#editForm').submit();
-    }
+    // Implement the logic to update the quiz using AJAX or other methods
+    // For simplicity, let's assume a form submission
+        $('#editForm').submit();  // Use the correct form ID
+}
 
+    function toggleAnswerOptions() {
+    var quizType = document.getElementById('editQuizType').value;
+    var answerOptionsInput = document.getElementById('editQuizAnswer');
+
+    // Disable the input if the Quiz Type is "Identification," otherwise enable it
+    answerOptionsInput.disabled = (quizType === 'identification');
+}
     
     
 </script>

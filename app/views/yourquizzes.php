@@ -18,12 +18,12 @@
         <div class="col-md-12 mt-4">
             <div class="card">
             <div style="float: right; margin-top: 10px;">
-                <button onclick="back()" class="btn btn-primary" style="margin-left: auto; margin-bottom: 10px;">← Back to quiz</button>
-                <button onclick="confirmLogout()" class="btn btn-danger" style="margin-left: 77%; margin-bottom: 10px;">Log Out→</button>
+                <button onclick="back()" class="btn btn-primary" style="margin-left: auto; margin-bottom: 10px;">← Back to create quiz</button>
+                <button onclick="confirmLogout()" class="btn btn-danger" style="margin-left: 74%; margin-bottom: 10px;">Log Out→</button>
             </div>
 
                 <div class="card-header bg-primary text-warning">
-                    <h3 style="text-align: center">Quiz List</h3>
+                    <h3 style="text-align: center">~Quiz List~</h3>
                 </div>
                 <div class="card-body bg-secondary">
                     <table class="table table-dark table-hover table-bordered text-center">
@@ -40,10 +40,10 @@
                                 <td><?= $info['id']; ?></td>
                                 <td><?= $info['quiz_title']; ?></td>
                                 <td>
-            <a class="btn btn-primary me-2" onclick="eachquiz()" data-bs-toggle="modal" data-bs-target="#editModal"
-              data-bs-placement="top" title="Edit">
-              <i class="fas fa-edit"></i>
-            </a>
+                                <a class="btn btn-primary me-2"  data-bs-toggle="modal" data-bs-target="#editModal"
+                                data-bs-placement="top" title="Edit" onclick="populateEditModal(<?= $info['id']; ?>, '<?= $info['quiz_title']; ?>')">
+                                <i class="fas fa-edit"></i>
+                                </a>
             <a class="btn btn-danger ms-2" data-bs-target="#deleteModal" data-bs-toggle="modal" data-bs-placement="top"
               title="Delete">
               <i class="fas fa-trash-alt"></i>
@@ -120,6 +120,13 @@
         window.location.href = "/eachquiz";
 
     }
+
+    function populateEditModal(id, quizTitle) {
+    $('#editQuizId').val(id);
+    $('#editQuizTitle').val(quizTitle);
+    window.location.href = "/eachquiz";
+}
+
 
     
     

@@ -290,7 +290,7 @@ public function create_quiz_post()
 
 		public function edit($id)
 		{
-			$data = $this->Quiz_model->quiz_data($id);
+			$data = $this->Quiz_model->quiz_data($id)->getRow();
 			$this->call->view('eachquiz', $data);
 		}
 		public function update()
