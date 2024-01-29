@@ -90,5 +90,52 @@ class Quiz_model extends Model {
     {
         return $this->db->table('quiz_table')->get_all();
     }
+    
+    public function insert_quiz_result($question_id, $user_answer, $quiz_answer, $is_correct)
+    {
+        $data = array(
+            'question_id' => $question_id,
+            'user_answer' => $user_answer,
+            'quiz_answer' => $quiz_answer,
+            'is_correct' => $is_correct
+        );
+    
+        return $this->db->insert('quiz_result', $data);
+    }
+
+    public function get_correct_answer_by_question_id($question_id)
+    {
+        // Query the database to retrieve the correct answer for the given question ID
+        $query = $this->db->table('quiz_table')->where('id', $question_id)->get();
+    
+        // Check if the query returned any rows
+        if (!empty($query)) {
+            // Check if the array key 0 exists
+            if (array_key_exists(0, $query)) {
+                // Return the value of the 'quiz_answer' column from the first row
+                return $query[0]['quiz_answer'];
+            } else {
+                return false; // Array key 0 does not exist
+            }
+        } else {
+            return false; // No rows returned by the query
+        }
+    }
+
+    public function get_question_text_by_id($question_id)
+    {
+        // Query the database to retrieve the question text for the given question ID
+        $query = $this->db->where('id', $question_id)->get('quiz_table');
+    
+        // Check if a single row is returned
+        if ($query->num_rows() == 1) {
+            $row = $query->row();
+            return $row->question_text; // Assuming 'question_text' is the column name for the question text
+        } else {
+            return false; // Question ID not found or multiple questions with the same ID
+        }
+    }
+    
+
 }
 ?>

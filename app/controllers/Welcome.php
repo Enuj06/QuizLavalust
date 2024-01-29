@@ -336,14 +336,30 @@ public function user_side() {
 
 	public function user_result()
 	{
-		// Assuming you have the user's quiz results available in an array named $quizResults
-		$quizResults = [
-			['question' => 'Question 1', 'user_answer' => 'User\'s answer', 'correct_answer' => 'Correct answer'],
-			['question' => 'Question 2', 'user_answer' => 'User\'s answer', 'correct_answer' => 'Correct answer'],
-		];
+		$this->call->model('Quiz_model');
+		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+			$quizResults = [];
 
-		// Load the view with the quiz results data
-		$this->call->view('User_result', ['quizResults' => $quizResults]);
+			foreach ($_POST['answers'] as $question_id => $user_answer) {
+				$correct_answer = $this->Quiz_model->get_correct_answer_by_question_id($question_id);
+
+				$is_correct = ($user_answer === $correct_answer) ? 'yes' : 'no';
+
+				$quizResults[] = [
+					'question' => $this->Quiz_model->get_question_text_by_id($question_id),
+					'user_answer' => $user_answer,
+					'correct_answer' => $correct_answer,
+					'is_correct' => $is_correct
+				];
+
+				$this->Quiz_model->create_quiz_result($question_id, $user_answer, $correct_answer, $is_correct);
+			}
+
+			$this->call->view('User_result', ['quizResults' => $quizResults]);
+		} else {
+			header('Location: error.php');
+			exit();
+		}
 	}
 }
 ?>

@@ -36,7 +36,6 @@
                 <p><?= $question['quiz_question'] ?></p>
                 <label for="answer<?= $question['id'] ?>">Your Answer:</label>
                 <input type="text" id="answer<?= $question['id'] ?>" name="answers[<?= $question['id'] ?>]" placeholder="Type your answer here">
-                <!-- Store correct answer in a hidden input field -->
                 <input type="hidden" id="correct_answer<?= $question['id'] ?>" value="<?= $question['quiz_answer'] ?>">
             </div>
         <?php endforeach; ?>
@@ -60,10 +59,10 @@
 
         if (!allCorrect) {
             alert('Some answers are incorrect. Please review your answers and try again.');
-            return false; // Prevent form submission
+            return false; 
         } else {
             alert('All answers are correct!');
-            return true; // Allow form submission
+            return true; 
         }
     }
 </script>
