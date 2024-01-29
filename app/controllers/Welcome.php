@@ -320,6 +320,12 @@ public function create_quiz_post()
     }
 }
 
+// --------------------
+// --------------------
+// ---- USER SIDE ----
+// --------------------
+// --------------------
+
 public function user_side() {
     $this->call->model('Quiz_model');
     
