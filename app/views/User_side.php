@@ -1,21 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Side</title>
-</head>
-<body>
-    <h2>User form</h2>
-
-     <php foreach ($data as $info) : ?>
-    <form>
-        <h2>quiz</h2>           
-        <p><= $info['quiz_title']; ?></p>
-    <php endforeach; ?>
-/body>
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,14 +30,16 @@
 <div class="quiz-container">
     <h1>HTML Quiz</h1>
 
-    <div class="question">
-        <p>1. What does HTML stand for?</p>
-        <div class="options">
-            <label><input type="radio" name="q1" value="a"> Hyper Text Markup Language</label>
-            <label><input type="radio" name="q1" value="b"> Hyperlink and Text Markup Language</label>
-            <label><input type="radio" name="q1" value="c"> Hyper Transfer Markup Language</label>
+    <?php foreach ($data as $info) : ?>
+        <div class="question">
+            <p>1. <?= $info['quiz_question']; ?></p>
+            <div class="options">
+                <label><input type="radio" name="q1" value="<?= $info['quiz_title']; ?>"><?= $info['quiz_title']; ?></label>
+                <label><input type="radio" name="q1" value="b"> Hyperlink and Text Markup Language</label>
+                <label><input type="radio" name="q1" value="c"> Hyper Transfer Markup Language</label>
+            </div>
         </div>
-    </div>
+    <?php endforeach; ?>
 
     <div class="question">
         <p>2. Which tag is used to create a hyperlink in HTML?</p>
