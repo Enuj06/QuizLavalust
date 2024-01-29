@@ -72,3 +72,4 @@ $router->get('/eachquiz/delete/(:num)', 'Welcome::deleteeach');    //eachquiz
 $router->get('/eachquiz/edit/(:num)', 'Welcome::edit');
 $router->post('/eachquiz/submitedit/(:num)', 'Welcome::submitedit');
 $router->get('/user_side', 'Welcome::User_side');
+$router->get('/user_result', 'Welcome::User_result');

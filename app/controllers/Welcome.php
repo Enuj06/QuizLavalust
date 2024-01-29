@@ -325,5 +325,10 @@ public function user_side(){
 	$this->call->view('User_side', $data);
 }
 
+public function user_result(){
+	$data = $this->Quiz_model->getDiffRows();
+	$this->call->view('User_result', $data);
+}
+
 }
 ?>
