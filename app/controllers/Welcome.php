@@ -320,15 +320,24 @@ public function create_quiz_post()
     }
 }
 
-public function user_side(){
-	$data = $this->Quiz_model->getDiffRows();
-	$this->call->view('User_side', $data);
+public function user_side() {
+    $this->call->model('Quiz_model');
+    
+    $data['questions'] = $this->Quiz_model->get_quiz_questions();
+    
+    $this->call->view('User_side', $data);
 }
 
-public function user_result(){
-	$data = $this->Quiz_model->getDiffRows();
-	$this->call->view('User_result', $data);
-}
+	public function user_result()
+	{
+		// Assuming you have the user's quiz results available in an array named $quizResults
+		$quizResults = [
+			['question' => 'Question 1', 'user_answer' => 'User\'s answer', 'correct_answer' => 'Correct answer'],
+			['question' => 'Question 2', 'user_answer' => 'User\'s answer', 'correct_answer' => 'Correct answer'],
+		];
 
+		// Load the view with the quiz results data
+		$this->call->view('User_result', ['quizResults' => $quizResults]);
+	}
 }
 ?>

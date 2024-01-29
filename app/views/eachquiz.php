@@ -166,8 +166,6 @@
     });
     
     function deleteQuiz(id) {
-        // You can use AJAX or redirect to perform the deletion logic
-        // For simplicity, let's assume a redirect
         window.location.href = "<?= site_url('/eachquiz/delete/') ?>" + id;
     }
     function back() {
@@ -180,8 +178,8 @@
     var isConfirmed = confirm("Are you sure you want to logout?");
     if (isConfirmed) {
         logout();
+        }
     }
-}
     function logout() {
         console.log("Logout button clicked");
         window.location.href = "/login";

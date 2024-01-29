@@ -30,37 +30,34 @@
 <div class="quiz-container">
     <h1>HTML Quiz</h1>
 
-    <?php foreach ($data as $info) : ?>
-        <div class="question">
-            <p>1. <?= $info['quiz_question']; ?></p>
-            <div class="options">
-                <label><input type="radio" name="q1" value="<?= $info['quiz_title']; ?>"><?= $info['quiz_title']; ?></label>
-                <label><input type="radio" name="q1" value="b"> Hyperlink and Text Markup Language</label>
-                <label><input type="radio" name="q1" value="c"> Hyper Transfer Markup Language</label>
+        <form id="quizForm" action="submit_quiz.php" method="post" onsubmit="return submitQuiz()">
+        <?php foreach ($questions as $question): ?>
+            <div class="question">
+                <p><?= $question['quiz_question'] ?></p>
+                <label for="answer<?= $question['id'] ?>">Your Answer:</label>
+                <input type="text" id="answer<?= $question['id'] ?>" name="answers[<?= $question['id'] ?>]" placeholder="Type your answer here">
+                <!-- Store correct answer in a hidden input field -->
+                <input type="hidden" id="correct_answer<?= $question['id'] ?>" value="<?= $question['quiz_answer'] ?>">
             </div>
-        </div>
-    <?php endforeach; ?>
-
-    <div class="question">
-        <p>2. Which tag is used to create a hyperlink in HTML?</p>
-        <div class="options">
-            <label><input type="radio" name="q2" value="a"> &lt;a&gt;</label>
-            <label><input type="radio" name="q2" value="b"> &lt;link&gt;</label>
-            <label><input type="radio" name="q2" value="c"> &lt;url&gt;</label>
-        </div>
-    </div>
-
-    <!-- Add more questions as needed -->
-
-    <button onclick="submitQuiz()">Submit</button>
+        <?php endforeach; ?>
+        <button type="button" onclick="submitQuiz()">Submit</button>
+    </form>
 </div>
 
 <script>
     function submitQuiz() {
-        // You can implement scoring or further actions here
-        alert('Quiz submitted!');
+        var questions = document.querySelectorAll('.question');
+        var allCorrect = true;
+
+        questions.forEach(function(question) {
+            var userAnswer = question.querySelector('input[type="text"]').value.trim();
+            var correctAnswer = question.querySelector('input[type="hidden"]').value.trim();
+
+            if (userAnswer.toLowerCase() !== correctAnswer.toLowerCase()) {
+                allCorrect = false;
+            }
+        });
     }
 </script>
-
 </body>
 </html>

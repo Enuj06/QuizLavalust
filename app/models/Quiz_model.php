@@ -85,5 +85,10 @@ class Quiz_model extends Model {
     public function searchInfo($id){
         return $this->db->table('quiz_table')->where('id', $id)->get();
     }
+
+    public function get_quiz_questions()
+    {
+        return $this->db->table('quiz_table')->get_all();
+    }
 }
 ?>
