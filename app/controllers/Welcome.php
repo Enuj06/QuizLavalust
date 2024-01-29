@@ -290,22 +290,40 @@ public function create_quiz_post()
 
 		public function edit($id)
 		{
-			$data = $this->Quiz_model->quiz_data($id)->getRow();
-			$this->call->view('eachquiz', $data);
+			$this->call->model('Quiz_model');
+			$data['edit'] = $this->Quiz_model->searchInfo($id);
+			$this->call->view('/eachquiz', $data);
 		}
-		public function update()
-		{
-			$id = $this->io->post('id');
-			$quiz_title = $this->io->post('quiz_title');
-			$quiz_note = $this->io->post('quiz_note');
-			$quiz_question = $this->io->post('quiz_question');
-			$quiz_type = $this->io->post('quiz_type');
-			$quiz_answer = $this->io->post('quiz_answer');
-			$correct_answer = $this->io->post('correct_answer');
-			$this->Quiz_model->edit($id, $quiz_title, $quiz_note, $quiz_question, $quiz_type, $quiz_answer, $correct_answer);
-			redirect('/eachquiz');
-		}
+		public function submitedit($id)
+{
+    if(isset($id)){
+        $quiz_note =  $this->io->post('editQuizNote'); // Update with the correct field name
+        $quiz_question = $this->io->post('editQuizQuestion');
+        $quiz_type = $this->io->post('editQuizType');
+        $quiz_answer = $this->io->post('editQuizAnswer');
+        $correct_answer = $this->io->post('editquizCorrectAnswer'); // Correct the field name
+        $data = [
+            'quiz_note' => $quiz_note,
+            'quiz_question' => $quiz_question,
+            'quiz_type' => $quiz_type,
+            'quiz_answer' => $quiz_answer,
+            'correct_answer' => $correct_answer,
+        ];
+        $result = $this->Quiz_model->edit($id, $quiz_note, $quiz_question, $quiz_type, $quiz_answer, $correct_answer);
+        if ($result) {
+            // Handle success
+            redirect('/eachquiz'); // Redirect to the quiz listing page
+        } else {
+            // Handle failure
+            // You might want to display an error message to the user
+        }
+    }
+}
 
-	
+public function user_side(){
+	$data = $this->Quiz_model->getDiffRows();
+	$this->call->view('User_side', $data);
+}
+
 }
 ?>

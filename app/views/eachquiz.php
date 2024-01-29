@@ -100,7 +100,7 @@
             </div>
             <div class="modal-body">
                 <!-- Form to edit the quiz details -->
-                <form id="editForm" method="post" action="/eachquiz/update/<?= $info['id']; ?>">
+                <form id="editForm" action="eachquiz/submitedit/" . $edit['id']: "submit"?>" method="POST">
                     <div class="mb-3">
                         <label for="editQuizNote" class="form-label">Quiz Note</label>
                         <input type="text" class="form-control" id="editQuizNote"  required>

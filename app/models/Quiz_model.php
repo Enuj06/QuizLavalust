@@ -59,23 +59,31 @@ class Quiz_model extends Model {
         $this->db->table('quiz_table')->select('quiz_title')->get_all();
     }
 
-    public function edit($id, $quiz_title, $quiz_note, $quiz_question, $quiz_type, $quiz_answer, $correct_answer)
-    {
-        $data = array(
-            'quiz_title' => $quiz_title,
-            'quiz_note' => $quiz_note,
-            'quiz_question' => $quiz_question,
-            'quiz_type' => $quiz_type,
-            'quiz_answer' => $quiz_answer,
-            'correct_answer' => $correct_answer,
-        );
-        $result = $this->db->table('quiz_table')->where('id', $id)->update($data);
-        if ($result)
-            return true;
+    public function qname(){
+        return $this->db->table('name_table')->get_all();
     }
+
+    public function edit($id, $quiz_title, $quiz_note, $quiz_question, $quiz_type, $quiz_answer, $correct_answer)
+{
+    $data = array(
+        'quiz_title' => $quiz_title,
+        'quiz_note' => $quiz_note,
+        'quiz_question' => $quiz_question,
+        'quiz_type' => $quiz_type,
+        'quiz_answer' => $quiz_answer,
+        'correct_answer' => $correct_answer,
+    );
+    $result = $this->db->table('quiz_table')->where('id', $id)->update($data);
+    return $result; // Return the result of the update operation
+}
+
     public function quiz_data($id)
     {
         return $this->db->table('quiz_table')->where(array('id' => $id))->get();
+    }
+
+    public function searchInfo($id){
+        return $this->db->table('quiz_table')->where('id', $id)->get();
     }
 }
 ?>
